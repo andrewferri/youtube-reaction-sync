@@ -8,6 +8,7 @@ const LOCAL_VIDEO_SELECT_INPUT = document.getElementById('local-video-select');
 let interval = null;
 let yt_player = null;
 let yt_video_url = '';
+let video_duration = 0;
 let local_player = null;
 let video_time_offset = 0;
 let local_video_file = null;
@@ -15,6 +16,8 @@ let local_player_playing = false;
 
 const syncVideo = () => {
     let newTime = Math.round(yt_player.getCurrentTime() - video_time_offset);
+    console.log(newTime);
+    console.log(local_player.duration);
     if (newTime < local_player.duration)
     {
         local_player.currentTime = newTime;
@@ -45,6 +48,7 @@ const ytStateChange = e => {
                     syncVideo();
                 }
             }
+            SET_TIME_OFFSET_BUTTON.disabled = false
             break;
 
         case 2: // pause / stop
@@ -67,13 +71,15 @@ YT_VIDEO_URL_INPUT.addEventListener('input', function(e){
     toggleGoButton();
 });
 
-LOCAL_VIDEO_SELECT_INPUT.addEventListener('change', function(e){
-    local_video_file = e.target.files[0];
+LOCAL_VIDEO_SELECT_INPUT.addEventListener('change', function(e) {
+    console.log(e.target.files[0])
+    local_video_file = URL.createObjectURL(e.target.files[0]);
+    console.log(local_video_file);
     toggleGoButton();
 });
 
-GO_BUTTON.addEventListener('click', function(){
-    let id = '';
+GO_BUTTON.addEventListener('click', function() {
+    let id = yt_video_url.split('v=').pop();
     yt_player = new YT.Player('yt-player', {
         videoId: id,
         width: '640',
@@ -84,13 +90,18 @@ GO_BUTTON.addEventListener('click', function(){
         }
     });
 
-    local_player = LOCAL_VIDEO.getElementsByTagName('video');
-    let source = LOCAL_VIDEO.getElementsByTagName('source');
+    local_player = LOCAL_VIDEO.getElementsByTagName('video')[0];
+    local_player.onloadedmetadata = () => {
+        console.log(local_player.duration)
+    };
+
+    let source = document.createElement('source');
     source.src = local_video_file;
+    local_player.replaceChildren(source);
     document.getElementById('video-players').classList.add('show');
 });
 
-SET_TIME_OFFSET_BUTTON.addEventListener('click', function(){
+SET_TIME_OFFSET_BUTTON.addEventListener('click', function() {
     video_time_offset = yt_player.getCurrentTime();
     TIME_OFFSET_INPUT.value = video_time_offset;
 });

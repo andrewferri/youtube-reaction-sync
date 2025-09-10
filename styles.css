@@ -103,3 +103,7 @@ button:disabled {
 #video-players .players > * {
     flex: 50%;
 }
+
+.global.sm #video-players {
+    opacity: 0.2;
+}
