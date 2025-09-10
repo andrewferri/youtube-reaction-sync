@@ -29,6 +29,18 @@ input.text:focus {
     border-color: #333;
 }
 
+input.text[readonly] {
+    cursor: default;
+}
+
+input.text[readonly]:focus {
+    border-color: #ccc;
+}
+
+input.text.small {
+    width: 50px;
+}
+
 button {
     height: 30px;
     padding: 0 10px;
@@ -40,11 +52,21 @@ button {
 }
 
 button:disabled {
+    background: #75a4e7;
     cursor: not-allowed;
 }
 
 .global {
     padding: 30px;
+}
+
+.global.sm {
+    opacity: 0.1;
+}
+
+.form-inputs-wrapper {
+    display: flex;
+    gap: 20px;
 }
 
 .form-inputs {
@@ -56,11 +78,28 @@ button:disabled {
     border-radius: 3px;
 }
 
-.form-inputs .field.omega {
+.form-inputs .field.spacing {
     padding-top: 25px;
 }
 
 .form-inputs .field label {
     display: block;
     height: 25px;
+}
+
+#video-players {
+    display: none;
+}
+
+#video-players.show {
+    display: block;
+}
+
+#video-players .players {
+    display: flex;
+    gap: 30px;
+}
+
+#video-players .players > * {
+    flex: 50%;
 }

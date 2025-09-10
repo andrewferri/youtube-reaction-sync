@@ -5,30 +5,43 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
-    <link href="styles.css" rel="stylesheet" />
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-<div class="global">
+<div class="global sm">
 
-    <div class="block">
+    <div class="block form-inputs-wrapper">
         <div class="form-inputs">
             <div class="field">
                 <label for="yt-video-url">YT video URL</label>
-                <input type="text" class="text" id="yt-video-url" />
+                <input type="text" class="text" id="yt-video-url">
             </div>
             <div class="field">
                 <label for="local-video-select">Select local video</label>
-                <input type="file" id="local-video-select" />
+                <input type="file" id="local-video-select">
             </div>
-            <div class="field omega">
+            <div class="field spacing">
                 <button id="go-btn" disabled>Go</button>
+            </div>
+        </div>
+        <div class="form-inputs">
+            <div class="field">
+                <label for="time-offset">Set time offset</label>
+                <div class="inputs">
+                    <input type="text" class="text small" id="time-offset" readonly>
+                    <button id="time-offset-btn" disabled>Set</button>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="video-players">
-        <div id="youtube-player"></div>
-        <div id="local-video-player"></div>
+        <div class="players">
+            <div id="yt-player"></div>
+            <div id="local-video-player">
+                <video controls><source src="" /></video>
+            </div>
+        </div>
     </div>
 
 </div>
