@@ -90,14 +90,17 @@ GO_BUTTON.addEventListener('click', function() {
         }
     });
 
-    local_player = LOCAL_VIDEO.getElementsByTagName('video')[0];
-    local_player.onloadedmetadata = () => {
+    local_player = document.createElement('video');
+    local_player.setAttribute('controls', 'controls');
+    local_player.addEventListener('loadeddata', () => {
         console.log(local_player.duration)
-    };
+    }, false);
 
     let source = document.createElement('source');
     source.src = local_video_file;
     local_player.replaceChildren(source);
+
+    LOCAL_VIDEO.replaceChildren(local_player);
     document.getElementById('video-players').classList.add('show');
 });
 
