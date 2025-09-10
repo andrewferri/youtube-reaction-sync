@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="global">
+
+    <div class="block">
+        <div class="form-inputs">
+            <div class="field">
+                <label for="yt-video-url">YT video URL</label>
+                <input type="text" class="text" id="yt-video-url" />
+            </div>
+            <div class="field">
+                <label for="local-video-select">Select local video</label>
+                <input type="file" id="local-video-select" />
+            </div>
+            <div class="field omega">
+                <button id="go-btn" disabled>Go</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-players">
+        <div id="youtube-player"></div>
+        <div id="local-video-player"></div>
+    </div>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="script.js"></script>
+</body>
+</html>

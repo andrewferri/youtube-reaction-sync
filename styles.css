@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+input, textarea, button, th, td {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input.text {
+    width: 400px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+input.text:focus {
+    border-color: #333;
+}
+
+button {
+    height: 30px;
+    padding: 0 10px;
+    background: #2d72d2;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.global {
+    padding: 30px;
+}
+
+.form-inputs {
+    display: inline-flex;
+    gap: 20px;
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-inputs .field.omega {
+    padding-top: 25px;
+}
+
+.form-inputs .field label {
+    display: block;
+    height: 25px;
+}
