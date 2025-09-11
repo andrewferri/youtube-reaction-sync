@@ -97,12 +97,12 @@ button:disabled {
 .inc-dec {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
 }
 
 .inc-dec button {
-    height: 14px;
-    font-size: 10px;
+    height: 13px;
+    font-size: 8px;
 }
 
 #video-players {
