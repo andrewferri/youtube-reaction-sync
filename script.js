@@ -25,9 +25,11 @@ const YTRS = {
             let time = self.ytPlayer.getCurrentTime() - self.videoTimeOffset;
             if (time < 0)
             {
+                // We loop until we reach the offset time, then play the video.
                 self.interval = setTimeout(self.syncVideo.bind(self), 100);
             } else
             {
+                clearInterval(self.interval);
                 if (time < self.videoDuration)
                 {
                     self.localPlayer.currentTime = time;
@@ -36,6 +38,7 @@ const YTRS = {
                     });
                 } else
                 {
+                    // Youtube video is playing past duration of local video, we pause.
                     self.localPlayer.pause();
                     self.localPlayerPlaying = false;
                 }
@@ -47,23 +50,18 @@ const YTRS = {
         let self = this;
         switch (e.data)
         {
-            case 1: // play
+            case 1: // Play
                 //
                 this.syncVideo();
                 break;
 
-            case 2: // pause
+            case 2: // Pause
                 //
                 if (self.localPlayerPlaying === true)
                 {
                     self.localPlayer.pause();
                     self.localPlayerPlaying = false;
                 }
-                break;
-
-            default:
-                //
-                console.log(e);
                 break;
         }
     },
@@ -72,29 +70,27 @@ const YTRS = {
         if (this.ytVideoUrlInput.value.match(/v=/i) !== null && this.localVideoSelect.files.length > 0)
         {
             let self = this;
-            let id = this.ytVideoUrlInput.value.split('v=').pop().replace(/^([A-Za-z0-9]+).*$/i, '$1');
 
             this.ytPlayer = new YT.Player('yt-player', {
-                videoId: id,
+                videoId: this.ytVideoUrlInput.value.split('v=').pop().replace(/^([A-Za-z0-9]+).*$/i, '$1'),
                 width: '640',
                 height: '390',
                 playerVars: {playsinline:1},
-                events: {
-                    onStateChange: this.YTStateChange.bind(this),
-                }
+                events: { onStateChange: this.YTStateChange.bind(this) }
             });
 
+            // Create HTML5 video element to play local video
             this.localPlayer = document.createElement('video');
             this.localPlayer.setAttribute('preload', 'metadata');
             //this.localPlayer.setAttribute('controls', 'controls');
             this.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
 
+            // Create source element for video above
             let source = document.createElement('source');
             source.src = URL.createObjectURL(this.localVideoSelect.files[0]);
             this.localPlayer.replaceChildren(source);
 
             this.timeOffsetButton.disabled = false;
-
             this.localVideo.replaceChildren(this.localPlayer);
             document.getElementById('video-players').classList.add('show');
         }
