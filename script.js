@@ -130,6 +130,7 @@ const YTRS = {
         this.videoCompleteButton.disabled = false;
         this.videoTimeOffset = this.ytPlayer.getCurrentTime();
         this.timeOffsetInput.value = this.ytPlayer.getCurrentTime();
+        this.syncVideo();
     },
 
     toggleTheatreMode: function() {
