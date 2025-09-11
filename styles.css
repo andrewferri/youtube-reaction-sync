@@ -130,6 +130,7 @@ button:disabled {
 
 .global.theatre-mode #video-players .players .yt-player {
     position: absolute;
+    z-index: 50;
     right: 20px;
     top: 0;
     width: 400px;
