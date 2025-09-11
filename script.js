@@ -29,8 +29,7 @@ const YTRS = {
     },
 
     videoComplete: function() {
-        this.global.classList.remove('theatre-mode');
-        this.localVideo.parentNode.removeChild(this.localVideo);
+        this.localPlayer.pause();
     },
 
     timeOffsetDec: function() {
