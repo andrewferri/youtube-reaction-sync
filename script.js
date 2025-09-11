@@ -99,27 +99,31 @@ const YTRS = {
         {
             let self = this;
 
-            this.ytPlayer = new YT.Player('yt-player', {
-                videoId: id,
-                width: '640',
-                height: '390',
-                playerVars: {playsinline:1},
-                events: { onStateChange: this.YTStateChange.bind(this) }
-            });
-
             // Create HTML5 video element to play local video
-            this.localPlayer = document.createElement('video');
-            this.localPlayer.setAttribute('preload', 'metadata');
-            this.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
+            self.localPlayer = document.createElement('video');
+            self.localPlayer.setAttribute('preload', 'metadata');
+            self.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
+            self.localPlayer.oncanplay = function(){
+                self.ytPlayer = new YT.Player('yt-player', {
+                    videoId: id,
+                    width: '640',
+                    height: '390',
+                    playerVars: {playsinline:1},
+                    events: { onStateChange: self.YTStateChange.bind(self) }
+                });
+
+                self.timeOffsetButton.disabled = false;
+                document.getElementById('video-players').classList.add('show');
+            };
 
             // Create source element for video above
             let source = document.createElement('source');
             source.src = URL.createObjectURL(this.localVideoSelect.files[0]);
-            this.localPlayer.replaceChildren(source);
-
-            this.timeOffsetButton.disabled = false;
-            this.localVideo.replaceChildren(this.localPlayer);
-            document.getElementById('video-players').classList.add('show');
+            source.addEventListener('error', function(){
+                alert('Invalid video file, please check.');
+            });
+            self.localPlayer.replaceChildren(source);
+            self.localVideo.replaceChildren(self.localPlayer);
         }
     },
 
