@@ -37,9 +37,12 @@ const YTRS = {
                 if (time < self.videoDuration)
                 {
                     self.localPlayer.currentTime = time;
-                    self.localPlayer.play().then(() => {
-                        self.localPlayerPlaying = true;
-                    });
+                    if (self.localPlayerPlaying === false)
+                    {
+                        self.localPlayer.play().then(() => {
+                            self.localPlayerPlaying = true;
+                        });
+                    }
                 } else
                 {
                     // Youtube video is playing past duration of local video, we pause.
