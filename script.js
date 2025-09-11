@@ -1,18 +1,64 @@
-const GO_BUTTON = document.getElementById('go-btn');
-const TIME_OFFSET_INPUT = document.getElementById('time-offset');
-const LOCAL_VIDEO = document.getElementById('local-video-player');
-const YT_VIDEO_URL_INPUT = document.getElementById('yt-video-url');
-const SET_TIME_OFFSET_BUTTON = document.getElementById('time-offset-btn');
-const LOCAL_VIDEO_SELECT_INPUT = document.getElementById('local-video-select');
+const YTRS = {
+    interval: null,
+    ytPlayer: null,
+    videoDuration: 0,
+    localPlayer: null,
+    videoTimeOffset: 0,
+    localPlayerPlaying: false,
+    timeOffsetInput: document.getElementById('time-offset'),
+    ytVideoUrlInput: document.getElementById('yt-video-url'),
+    localVideo: document.getElementById('local-video-player'),
+    timeOffsetButton: document.getElementById('time-offset-btn'),
+    localVideoSelect: document.getElementById('local-video-select'),
 
-let interval = null;
-let yt_player = null;
-let yt_video_url = '';
-let video_duration = 0;
-let local_player = null;
-let video_time_offset = 0;
-let local_video_file = null;
-let local_player_playing = false;
+    init: function() {
+        let self = this
+        this.ytVideoUrlInput.addEventListener('input', self.initPlayers.bind(this))
+        this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this))
+    },
+    syncVideo: function() {
+
+    },
+    YTStateChange: function(e) {
+        console.log(e);
+    },
+    initPlayers: function() {
+        if (this.ytVideoUrlInput.value.match(/v=/i) !== null && this.localVideoSelect.files.length > 0)
+        {
+            let self = this;
+            let id = this.ytVideoUrlInput.value.split('v=').pop().replace(/^([A-Za-z0-9]+).*$/i, '$1');
+
+            this.ytPlayer = new YT.Player('yt-player', {
+                videoId: id,
+                width: '640',
+                height: '390',
+                playerVars: {playsinline:1},
+                events: {
+                    onStateChange: this.YTStateChange.bind(this),
+                }
+            });
+
+            this.localPlayer = document.createElement('video');
+            this.localPlayer.setAttribute('preload', 'metadata');
+            this.localPlayer.setAttribute('controls', 'controls');
+            this.localPlayer.onloadedmetadata = function(){
+                console.log(this)
+                console.log(self.localPlayer);
+            };
+
+            let source = document.createElement('source');
+            source.src = URL.createObjectURL(this.localVideoSelect.files[0]);
+            this.localPlayer.replaceChildren(source);
+
+            this.localVideo.replaceChildren(this.localPlayer);
+            document.getElementById('video-players').classList.add('show');
+        }
+    }
+};
+
+YTRS.init();
+
+/*
 
 const syncVideo = () => {
     let newTime = Math.round(yt_player.getCurrentTime() - video_time_offset);
@@ -79,7 +125,7 @@ LOCAL_VIDEO_SELECT_INPUT.addEventListener('change', function(e) {
 });
 
 GO_BUTTON.addEventListener('click', function() {
-    let id = yt_video_url.split('v=').pop();
+    let id = yt_video_url.split('v=').pop().replace(/^([A-Za-z0-9]+).*$/i, '$1');
     yt_player = new YT.Player('yt-player', {
         videoId: id,
         width: '640',
@@ -107,4 +153,4 @@ GO_BUTTON.addEventListener('click', function() {
 SET_TIME_OFFSET_BUTTON.addEventListener('click', function() {
     video_time_offset = yt_player.getCurrentTime();
     TIME_OFFSET_INPUT.value = video_time_offset;
-});
+});*/
