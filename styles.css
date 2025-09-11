@@ -7,7 +7,7 @@ body {
     line-height: 1.4;
 }
 
-img {
+img, video {
     max-width: 100%;
     height: auto;
 }
@@ -102,6 +102,7 @@ button:disabled {
 
 #video-players .players > * {
     flex: 50%;
+    width: 50%;
 }
 
 .global.sm #video-players {

@@ -15,12 +15,60 @@ const YTRS = {
         let self = this
         this.ytVideoUrlInput.addEventListener('input', self.initPlayers.bind(this))
         this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this))
+        this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this))
     },
     syncVideo: function() {
-
+        let self = this;
+        if (self.videoTimeOffset > 0)
+        {
+            let time = self.ytPlayer.getCurrentTime() - self.videoTimeOffset;
+            if (time < 0)
+            {
+                self.interval = setTimeout(self.syncVideo.bind(self), 100);
+            } else
+            {
+                if (time < self.videoDuration)
+                {
+                    self.localPlayer.currentTime = time;
+                    self.localPlayer.play().then(() => {
+                        self.localPlayerPlaying = true;
+                    });
+                } else
+                {
+                    self.localPlayer.pause();
+                    self.localPlayerPlaying = false;
+                }
+            }
+        }
     },
     YTStateChange: function(e) {
-        console.log(e);
+        let self = this;
+        switch (e.data)
+        {
+            case 1: // play
+                //
+                this.syncVideo();
+                break;
+
+            case 2: // pause
+                //
+                if (self.localPlayerPlaying === true)
+                {
+                    self.localPlayer.pause();
+                    self.localPlayerPlaying = false;
+                }
+                break;
+
+            case 3: // change position
+                //
+                this.syncVideo();
+                break;
+
+            default:
+                //
+                console.log(e);
+                break;
+        }
     },
     initPlayers: function() {
         if (this.ytVideoUrlInput.value.match(/v=/i) !== null && this.localVideoSelect.files.length > 0)
@@ -41,18 +89,21 @@ const YTRS = {
             this.localPlayer = document.createElement('video');
             this.localPlayer.setAttribute('preload', 'metadata');
             this.localPlayer.setAttribute('controls', 'controls');
-            this.localPlayer.onloadedmetadata = function(){
-                console.log(this)
-                console.log(self.localPlayer);
-            };
+            this.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
 
             let source = document.createElement('source');
             source.src = URL.createObjectURL(this.localVideoSelect.files[0]);
             this.localPlayer.replaceChildren(source);
 
+            this.timeOffsetButton.disabled = false;
+
             this.localVideo.replaceChildren(this.localPlayer);
             document.getElementById('video-players').classList.add('show');
         }
+    },
+    updateTimeOffset: function() {
+        this.videoTimeOffset = this.ytPlayer.getCurrentTime();
+        this.timeOffsetInput.value = this.ytPlayer.getCurrentTime();
     }
 };
 
