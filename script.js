@@ -12,10 +12,10 @@ const YTRS = {
     localVideoSelect: document.getElementById('local-video-select'),
 
     init: function() {
-        let self = this
-        this.ytVideoUrlInput.addEventListener('input', self.initPlayers.bind(this))
-        this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this))
-        this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this))
+        let self = this;
+        this.ytVideoUrlInput.addEventListener('input', self.initPlayers.bind(this));
+        this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this));
+        this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this));
     },
     syncVideo: function() {
         let self = this;
@@ -83,7 +83,7 @@ const YTRS = {
 
             this.localPlayer = document.createElement('video');
             this.localPlayer.setAttribute('preload', 'metadata');
-            this.localPlayer.setAttribute('controls', 'controls');
+            //this.localPlayer.setAttribute('controls', 'controls');
             this.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
 
             let source = document.createElement('source');
