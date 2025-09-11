@@ -17,6 +17,7 @@ const YTRS = {
         this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this));
         this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this));
     },
+
     syncVideo: function() {
         let self = this;
         if (self.videoTimeOffset > 0)
@@ -41,6 +42,7 @@ const YTRS = {
             }
         }
     },
+
     YTStateChange: function(e) {
         let self = this;
         switch (e.data)
@@ -65,6 +67,7 @@ const YTRS = {
                 break;
         }
     },
+
     initPlayers: function() {
         if (this.ytVideoUrlInput.value.match(/v=/i) !== null && this.localVideoSelect.files.length > 0)
         {
@@ -96,10 +99,11 @@ const YTRS = {
             document.getElementById('video-players').classList.add('show');
         }
     },
+
     updateTimeOffset: function() {
         this.videoTimeOffset = this.ytPlayer.getCurrentTime();
         this.timeOffsetInput.value = this.ytPlayer.getCurrentTime();
-    }
+    },
 };
 
 YTRS.init();
