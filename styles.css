@@ -68,6 +68,7 @@ button:disabled {
 .form-inputs-wrapper {
     display: flex;
     gap: 20px;
+    margin-bottom: 20px;
 }
 
 .form-inputs {
@@ -108,4 +109,16 @@ button:disabled {
 
 .global.sm #video-players {
     opacity: 0.2;
+}
+
+.global.theatre-mode .form-inputs {
+    display: none;
+}
+
+.global.theatre-mode .form-inputs.sfs {
+    display: inline-flex;
+}
+
+.global.theatre-mode .form-inputs .field.spacing {
+    padding-top: 0;
 }

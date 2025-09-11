@@ -10,6 +10,7 @@ const YTRS = {
     ytVideoUrlInput: document.getElementById('yt-video-url'),
     localVideo: document.getElementById('local-video-player'),
     timeOffsetButton: document.getElementById('time-offset-btn'),
+    theatreModeButton: document.getElementById('theatre-mode-btn'),
     localVideoSelect: document.getElementById('local-video-select'),
 
     init: function() {
@@ -17,6 +18,7 @@ const YTRS = {
         this.ytVideoUrlInput.addEventListener('input', self.initPlayers.bind(this));
         this.localVideoSelect.addEventListener('change', self.initPlayers.bind(this));
         this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this));
+        this.theatreModeButton.addEventListener('click', self.toggleTheatreMode.bind(this));
     },
 
     syncVideo: function() {
@@ -83,7 +85,6 @@ const YTRS = {
             // Create HTML5 video element to play local video
             this.localPlayer = document.createElement('video');
             this.localPlayer.setAttribute('preload', 'metadata');
-            //this.localPlayer.setAttribute('controls', 'controls');
             this.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
 
             // Create source element for video above
@@ -98,8 +99,13 @@ const YTRS = {
     },
 
     updateTimeOffset: function() {
+        this.theatreModeButton.disabled = false;
         this.videoTimeOffset = this.ytPlayer.getCurrentTime();
         this.timeOffsetInput.value = this.ytPlayer.getCurrentTime();
+    },
+
+    toggleTheatreMode: function() {
+        this.global.classList.toggle('theatre-mode');
     },
 };
 
