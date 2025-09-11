@@ -12,6 +12,7 @@ const YTRS = {
     timeOffsetButton: document.getElementById('time-offset-btn'),
     theatreModeButton: document.getElementById('theatre-mode-btn'),
     localVideoSelect: document.getElementById('local-video-select'),
+    ytPlayerContainer: document.getElementsByClassName('yt-player')[0],
 
     init: function() {
         let self = this;
@@ -106,6 +107,17 @@ const YTRS = {
 
     toggleTheatreMode: function() {
         this.global.classList.toggle('theatre-mode');
+        if (this.global.classList.contains('theatre-mode'))
+        {
+            let self = this;
+            setTimeout(() => {
+                let width = document.body.clientWidth - self.localPlayer.clientWidth - 100;
+                self.ytPlayerContainer.style.width = `${width}px`;
+            }, 100)
+        } else
+        {
+            this.ytPlayerContainer.removeAttribute('style');
+        }
     },
 };
 
