@@ -5,6 +5,7 @@ const YTRS = {
     localPlayer: null,
     videoTimeOffset: 0,
     localPlayerPlaying: false,
+    global: document.getElementById('global'),
     timeOffsetInput: document.getElementById('time-offset'),
     ytVideoUrlInput: document.getElementById('yt-video-url'),
     localVideo: document.getElementById('local-video-player'),
