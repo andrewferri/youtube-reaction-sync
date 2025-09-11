@@ -89,6 +89,22 @@ button:disabled {
     height: 25px;
 }
 
+.form-inputs .field .inputs {
+    display: flex;
+    gap: 5px;
+}
+
+.inc-dec {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.inc-dec button {
+    height: 14px;
+    font-size: 10px;
+}
+
 #video-players {
     display: none;
 }
