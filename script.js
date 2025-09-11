@@ -59,11 +59,6 @@ const YTRS = {
                 }
                 break;
 
-            case 3: // change position
-                //
-                this.syncVideo();
-                break;
-
             default:
                 //
                 console.log(e);
