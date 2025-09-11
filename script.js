@@ -14,6 +14,7 @@ const YTRS = {
     localVideoSelect: document.getElementById('local-video-select'),
     timeOffsetButtonDec: document.getElementById('time-offset-dec'),
     timeOffsetButtonInc: document.getElementById('time-offset-inc'),
+    videoCompleteButton: document.getElementById('video-complete-btn'),
     ytPlayerContainer: document.getElementsByClassName('yt-player')[0],
 
     init: function() {
@@ -23,7 +24,13 @@ const YTRS = {
         this.timeOffsetButton.addEventListener('click', self.updateTimeOffset.bind(this));
         this.timeOffsetButtonDec.addEventListener('click', self.timeOffsetDec.bind(this));
         this.timeOffsetButtonInc.addEventListener('click', self.timeOffsetInc.bind(this));
+        this.videoCompleteButton.addEventListener('click', self.videoComplete.bind(this));
         this.theatreModeButton.addEventListener('click', self.toggleTheatreMode.bind(this));
+    },
+
+    videoComplete: function() {
+        this.global.classList.remove('theatre-mode');
+        this.localVideo.parentNode.removeChild(this.localVideo);
     },
 
     timeOffsetDec: function() {
@@ -120,6 +127,7 @@ const YTRS = {
         this.theatreModeButton.disabled = false;
         this.timeOffsetButtonDec.disabled = false;
         this.timeOffsetButtonInc.disabled = false;
+        this.videoCompleteButton.disabled = false;
         this.videoTimeOffset = this.ytPlayer.getCurrentTime();
         this.timeOffsetInput.value = this.ytPlayer.getCurrentTime();
     },
