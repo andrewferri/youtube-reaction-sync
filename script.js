@@ -99,19 +99,20 @@ const YTRS = {
         {
             let self = this;
 
+            //
+            self.ytPlayer = new YT.Player('yt-player', {
+                videoId: id,
+                width: '640',
+                height: '390',
+                playerVars: {playsinline:1},
+                events: { onStateChange: self.YTStateChange.bind(self) }
+            });
+
             // Create HTML5 video element to play local video
             self.localPlayer = document.createElement('video');
             self.localPlayer.setAttribute('preload', 'metadata');
             self.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
             self.localPlayer.oncanplay = function(){
-                self.ytPlayer = new YT.Player('yt-player', {
-                    videoId: id,
-                    width: '640',
-                    height: '390',
-                    playerVars: {playsinline:1},
-                    events: { onStateChange: self.YTStateChange.bind(self) }
-                });
-
                 self.timeOffsetButton.disabled = false;
                 document.getElementById('video-players').classList.add('show');
             };
