@@ -1,6 +1,7 @@
 const YTRS = {
     interval: null,
     ytPlayer: null,
+    currentYTTime: 0,
     videoDuration: 0,
     localPlayer: null,
     videoTimeOffset: 0,
@@ -44,9 +45,11 @@ const YTRS = {
 
     syncVideo: function() {
         let self = this;
+
         if (self.videoTimeOffset > 0)
         {
             let time = self.ytPlayer.getCurrentTime() - self.videoTimeOffset;
+
             if (time < 0)
             {
                 // We loop until we reach the offset time, then play the video.
@@ -79,7 +82,7 @@ const YTRS = {
         {
             case 1: // Play
                 //
-                this.syncVideo();
+                self.syncVideo();
                 break;
 
             case 2: // Pause
@@ -99,22 +102,25 @@ const YTRS = {
         {
             let self = this;
 
-            //
-            self.ytPlayer = new YT.Player('yt-player', {
-                videoId: id,
-                width: '640',
-                height: '390',
-                playerVars: {playsinline:1},
-                events: { onStateChange: self.YTStateChange.bind(self) }
-            });
 
             // Create HTML5 video element to play local video
             self.localPlayer = document.createElement('video');
             self.localPlayer.setAttribute('preload', 'metadata');
             self.localPlayer.onloadedmetadata = function(){ self.videoDuration = this.duration; };
             self.localPlayer.oncanplay = function(){
-                self.timeOffsetButton.disabled = false;
-                document.getElementById('video-players').classList.add('show');
+                if (self.ytPlayer === null)
+                {
+                    self.ytPlayer = new YT.Player('yt-player', {
+                        videoId: id,
+                        width: '640',
+                        height: '390',
+                        playerVars: {playsinline:1},
+                        events: { onStateChange: self.YTStateChange.bind(self) }
+                    });
+
+                    self.timeOffsetButton.disabled = false;
+                    document.getElementById('video-players').classList.add('show');
+                }
             };
 
             // Create source element for video above
