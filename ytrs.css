@@ -106,8 +106,8 @@ video {
 #root.step3 #step .yt-wrap {
   position: absolute;
   z-index: 50;
-  left: 0;
-  top: 0;
+  left: 20px;
+  top: 20px;
   width: 400px;
   padding: 10px;
 }

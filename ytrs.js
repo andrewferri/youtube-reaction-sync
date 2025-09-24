@@ -199,7 +199,7 @@ const YTRS = {
         {
             let info = document.createElement('div')
             info.className = 'info'
-            info.innerHTML = '<p>Use the right edge of the Youtube video to resize. Use the other edges to drag and reposition.<br/>When ready, click play on the Youtube video. The local video will sync with the Youtube video when you play/pause/seek.</p>'
+            info.innerHTML = "<p>Use the right edge of the Youtube video to resize. Use the other edges to drag and reposition.<br/>When you're ready, click play on the Youtube video. The local video will sync with the Youtube video when you play/pause/seek.</p>"
             self.step.appendChild(info)
 
             let a = document.createElement('a')
