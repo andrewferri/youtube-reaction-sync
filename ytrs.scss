@@ -76,6 +76,7 @@ video {
       border-radius: 0;
 
       #local-player {
+        position: relative;
         width: 100vw;
         max-width: 100%;
         height: 100vh;
@@ -84,6 +85,39 @@ video {
           width: 100%;
           height: 100%;
           object-fit: contain;
+        }
+
+        .video-controls {
+          position: absolute;
+          z-index: 20;
+          left: 0;
+          bottom: 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: 50px;
+          padding: 0 15px;
+          background: rgba(0,0,0,0.7);
+
+          button {
+            appearance: none;
+            display: inline-block;
+            vertical-align: middle;
+            height: 30px;
+            line-height: 30px;
+            background: transparent;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+
+            svg {
+              vertical-align: middle;
+
+              path {
+                fill: white;
+              }
+            }
+          }
         }
       }
 
@@ -228,5 +262,24 @@ input.text {
   &.show {
     opacity: 1;
     pointer-events: all;
+  }
+}
+
+body.is-work {
+
+  #root, #faq .inner > *:last-child {
+    opacity: 0.05;
+  }
+
+  #root {
+    background: transparent none !important;
+
+    &.step3 {
+      background: black !important;
+    }
+  }
+
+  #faq-toggle {
+    display: none;
   }
 }

@@ -1,3 +1,6 @@
+const VOLUME_ICON = '<svg width="15px" height="15px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 1H8V15H6L2 11H0V5H2L6 1Z" fill="#000000"/><path d="M14 8C14 5.79086 12.2091 4 10 4V2C13.3137 2 16 4.68629 16 8C16 11.3137 13.3137 14 10 14V12C12.2091 12 14 10.2091 14 8Z" fill="#000000"/><path d="M12 8C12 9.10457 11.1046 10 10 10V6C11.1046 6 12 6.89543 12 8Z" fill="#000000"/></svg>'
+const MUTED_ICON = '<svg width="15px" height="15px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1H6L2 5H0V11H2L6 15H8V1Z" fill="#000000"/><path d="M9.29289 6.20711L11.0858 8L9.29289 9.79289L10.7071 11.2071L12.5 9.41421L14.2929 11.2071L15.7071 9.79289L13.9142 8L15.7071 6.20711L14.2929 4.79289L12.5 6.58579L10.7071 4.79289L9.29289 6.20711Z" fill="#000000"/></svg>'
+
 const YTRS = {
     layout: '',
     root: null,
@@ -6,7 +9,10 @@ const YTRS = {
     videoOffset: 0,
     YTPlayer: null,
     YTVideoURL: '',
+    currentVolume: 0,
     localVideoURL: '',
+    volumeButton: null,
+    volumeSlider: null,
     videoPlaying: false,
     YTVideoValid: false,
     localVideoPlayer: '',
@@ -341,9 +347,31 @@ const YTRS = {
             }
         }
     },
-    loadLocalPlayer: function(controls)
+    changeVolume: function(e)
+    {
+        this.currentVolume = parseFloat((parseInt(e.target.value) / 100).toFixed(2))
+        this.localVideoPlayer.volume = this.currentVolume
+        this.volumeButton.innerHTML = (this.currentVolume <= 0) ? MUTED_ICON : VOLUME_ICON
+    },
+    toggleMute: function()
+    {
+        if (this.localVideoPlayer.volume > 0)
+        {
+            this.volumeSlider.value = 0
+            this.localVideoPlayer.volume = 0
+            this.volumeButton.innerHTML = MUTED_ICON
+        } else
+        {
+            this.volumeSlider.value = this.currentVolume * 100
+            this.localVideoPlayer.volume = this.currentVolume
+            this.volumeButton.innerHTML = VOLUME_ICON
+        }
+    },
+    loadLocalPlayer: function(controls=false)
     {
         let self = this
+        let parent = document.getElementById('local-player')
+
         self.localVideoPlayer = document.createElement('video')
         self.localVideoPlayer.setAttribute('preload', 'metadata')
         if (controls === true)
@@ -354,6 +382,30 @@ const YTRS = {
         self.localVideoPlayer.oncanplay = function()
         {
             self.localVideoValid = true
+
+            if (controls === false)
+            {
+                let div = document.createElement('div')
+                div.className = 'video-controls'
+                parent.appendChild(div)
+
+                self.volumeButton = document.createElement('button')
+                self.volumeButton.innerHTML = VOLUME_ICON
+                self.volumeButton.addEventListener('click', self.toggleMute.bind(self))
+                div.appendChild(self.volumeButton)
+
+                self.volumeSlider = document.createElement('input')
+                self.volumeSlider.setAttribute('type', 'range')
+                self.volumeSlider.setAttribute('min', '0')
+                self.volumeSlider.setAttribute('max', '100')
+                self.volumeSlider.setAttribute('step', '1')
+                self.volumeSlider.addEventListener('input', self.changeVolume.bind(self))
+                self.volumeSlider.addEventListener('change', self.changeVolume.bind(self))
+                self.volumeSlider.value = Math.round(self.localVideoPlayer.volume * 100).toString()
+                div.appendChild(self.volumeSlider)
+
+                self.currentVolume = self.localVideoPlayer.volume
+            }
         }
         self.localVideoPlayer.onerror = function()
         {
@@ -370,7 +422,7 @@ const YTRS = {
         })
 
         self.localVideoPlayer.appendChild(source)
-        document.getElementById('local-player').appendChild(self.localVideoPlayer)
+        parent.appendChild(self.localVideoPlayer)
     },
     youtubeId: function() {
         let id = ''
