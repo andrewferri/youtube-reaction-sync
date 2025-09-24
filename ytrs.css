@@ -178,11 +178,4 @@ input.text {
   cursor: not-allowed;
 }
 
-body.is-work #root {
-  opacity: 0.1;
-}
-body.is-work #yt-player {
-  opacity: 0.3;
-}
-
 /*# sourceMappingURL=ytrs.css.map */
