@@ -187,7 +187,7 @@ const YTRS = {
         self._clear()
         self.root.className = 'step3'
 
-        document.getElementById('faq').remove()
+        document.getElementById('faq-toggle').remove()
 
         if (localStorage.getItem('infoCleared') === null)
         {
