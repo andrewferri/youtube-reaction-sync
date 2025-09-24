@@ -23,12 +23,26 @@ video {
   height: 100%;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
 #root {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #999;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  transition: 0.3s;
 }
 #root.step1 #s1-link, #root.step2 #s2-link, #root.step3 #s3-link, #root.step4 #s4-link {
   font-weight: 700;
@@ -41,7 +55,7 @@ video {
   max-width: 500px;
 }
 #root.step3 {
-  background: #333;
+  background: black;
 }
 #root.step3 #step {
   padding: 0;

@@ -1,63 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Youtube reaction video sync</title>
-    <link href="styles.css" rel="stylesheet">
+    <link href="ytrs.css" rel="stylesheet">
 </head>
 <body>
-<div id="global" class="global">
 
-    <div class="block form-inputs-wrapper">
-        <div class="form-inputs">
-            <div class="field">
-                <label for="yt-video-url">YT video URL</label>
-                <input type="text" class="text" id="yt-video-url">
-            </div>
-            <div class="field">
-                <label for="local-video-select">Select local video</label>
-                <input type="file" id="local-video-select">
-            </div>
-        </div>
-        <div class="form-inputs">
-            <div class="field">
-                <label for="time-offset">Set time offset</label>
-                <div class="inputs">
-                    <input type="text" class="text small" id="time-offset" readonly>
-                    <button id="time-offset-btn" disabled>Set</button>
-                    <div class="inc-dec">
-                        <button id="time-offset-inc" disabled>&uarr;</button>
-                        <button id="time-offset-dec" disabled>&darr;</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-inputs sfs">
-            <div class="field spacing">
-                <div class="inputs">
-                    <button id="theatre-mode-btn" disabled>Theatre mode</button>
-                    <button id="video-complete-btn" disabled>Click when credits roll</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="video-players">
-        <div class="players">
-            <div class="yt-player">
-                <div class="inner">
-                    <div id="yt-player"></div>
-                </div>
-            </div>
-            <div id="local-video-player"></div>
-        </div>
-    </div>
-
+<div id="root">
+    <div id="step"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 <script src="https://www.youtube.com/iframe_api"></script>
-<script src="script.js"></script>
+<script src="ytrs.js"></script>
 </body>
 </html>
