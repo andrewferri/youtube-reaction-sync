@@ -218,8 +218,8 @@ const YTRS = {
         self.step.appendChild(wrap1)
 
         let width = localStorage.getItem('ytWidth')
-        let left = localStorage.getItem('ytTop')
-        let top = localStorage.getItem('ytLeft')
+        let left = localStorage.getItem('ytLeft')
+        let top = localStorage.getItem('ytTop')
 
         if (width !== null){ wrap1.style.width = width }
         if (left !== null){ wrap1.style.left = left }
@@ -251,8 +251,9 @@ const YTRS = {
                     {
                         wrap1.classList.add('dragging')
                     },
-                    end()
+                    end(event)
                     {
+                        console.log(event)
                         wrap1.classList.remove('dragging')
                     },
                     move(event)
@@ -274,8 +275,9 @@ const YTRS = {
                     {
                         wrap1.classList.add('dragging')
                     },
-                    end()
+                    end(event)
                     {
+                        console.log(event)
                         wrap1.classList.remove('dragging')
                     },
                     move(event)
