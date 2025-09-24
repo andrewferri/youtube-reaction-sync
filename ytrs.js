@@ -17,6 +17,16 @@ const YTRS = {
         this.root = document.getElementById('root')
         this.step = document.getElementById('step')
         this.step1()
+
+        let faq = document.getElementById('faq')
+        document.getElementById('faq-open').addEventListener('click', function(e){
+            e.preventDefault()
+            faq.classList.add('show')
+        })
+        document.getElementById('faq-close').addEventListener('click', function(e){
+            e.preventDefault()
+            faq.classList.remove('show')
+        })
     },
     step1: function() // YT URL
     {

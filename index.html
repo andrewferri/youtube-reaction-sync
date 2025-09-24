@@ -11,6 +11,31 @@
 
 <div id="root">
     <div id="step"></div>
+    <div>
+        <button class="btn" id="faq-open">What is this?</button>
+    </div>
+</div>
+
+<div id="faq">
+    <div class="inner">
+        <div class="text">
+            <p>This web app allows you to easily sync a Youtube reaction with the original video. All you need to supply are the link to the Youtube video, and your own copy of the video.</p>
+            <h4>FAQ</h4>
+            <ol>
+                <li>
+                    <strong>Q. What happens with my copy of the video? Is it uploaded to some server?</strong>
+                    <br/>A. Your video is not uploaded anywhere. It is streamed directly from your computer to the web page in your browser. If you're familiar with JavaScript, feel free to take a look at the source and confirm. If you're not, grab a buddy who is and get them to have a look.
+                </li>
+                <li>
+                    <strong>Q. I'm not convinced, is there some other way to verify?</strong>
+                    <br/>A. There sure is! Go to the <a href="https://github.com/andrewferri/youtube-reaction-sync">GitHub repository</a> and download the source. Then run the index.html file locally or on your own web server.
+                </li>
+            </ol>
+        </div>
+        <div class="right">
+            <a id="faq-close" href="#">&times;</a>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>

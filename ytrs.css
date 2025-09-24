@@ -38,6 +38,7 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -107,41 +108,8 @@ video {
   text-decoration: none;
 }
 
-.crumbs {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 0 20px;
-}
-.crumbs ul {
-  display: flex;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-.crumbs li {
-  position: relative;
-}
-.crumbs li:after {
-  content: ">";
-  margin-left: 10px;
-}
-.crumbs li:last-child {
-  padding-right: 0;
-}
-.crumbs li:last-child:after {
-  content: "";
-}
-.crumbs a {
-  display: inline-flex;
-  height: 30px;
-  line-height: 30px;
-  color: #2d72d2;
-  text-decoration: none;
-}
-
 #step {
+  margin-bottom: 10px;
   padding: 50px;
   background: white;
   border-radius: 5px;
@@ -189,6 +157,48 @@ input.text {
 .btn[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+#faq {
+  position: fixed;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+#faq .inner {
+  display: flex;
+  gap: 20px;
+  max-width: 700px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+#faq .inner .text {
+  flex: 1;
+}
+#faq .inner .text li {
+  margin-bottom: 10px;
+}
+#faq .inner .text > *:last-child {
+  margin-bottom: 0;
+}
+#faq .inner #faq-close {
+  color: red;
+  font-size: 60px;
+  line-height: 30px;
+  text-decoration: none;
+}
+#faq.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /*# sourceMappingURL=ytrs.css.map */
