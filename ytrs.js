@@ -107,10 +107,6 @@ const YTRS = {
         div.appendChild(button)
         self.step.appendChild(div)
     },
-    validate_step1: function()
-    {
-
-    },
     step2: function() // Select local file
     {
         let self = this
