@@ -177,20 +177,24 @@ const YTRS = {
         self._clear()
         self.root.className = 'step3'
 
-        let info = document.createElement('div')
-        info.className = 'info'
-        info.innerHTML = '<p>Use the right edge of Youtube video to resize.<br/>Use the other edges to drag and reposition.<br/>When ready, click play on the Youtube video. The local video will sync with the Youtube video when you play/pause/seek.</p>'
-        self.step.appendChild(info)
-
-        let a = document.createElement('a')
-        a.setAttribute('href', '#')
-        a.innerHTML = '&times;'
-        a.addEventListener('click', function(e)
+        if (localStorage.getItem('infoCleared') === null)
         {
-            e.preventDefault()
-            info.remove()
-        })
-        info.appendChild(a)
+            let info = document.createElement('div')
+            info.className = 'info'
+            info.innerHTML = '<p>Use the right edge of the Youtube video to resize. Use the other edges to drag and reposition.<br/>When ready, click play on the Youtube video. The local video will sync with the Youtube video when you play/pause/seek.</p>'
+            self.step.appendChild(info)
+
+            let a = document.createElement('a')
+            a.setAttribute('href', '#')
+            a.innerHTML = '&times;'
+            a.addEventListener('click', function(e)
+            {
+                e.preventDefault()
+                info.remove()
+                localStorage.setItem('infoCleared', '1')
+            })
+            info.appendChild(a)
+        }
 
         let div = document.createElement('div')
         div.setAttribute('id', 'local-player')
