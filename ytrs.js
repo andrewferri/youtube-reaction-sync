@@ -217,6 +217,14 @@ const YTRS = {
         wrap1.className = 'yt-wrap'
         self.step.appendChild(wrap1)
 
+        let width = localStorage.getItem('ytWidth')
+        let left = localStorage.getItem('ytTop')
+        let top = localStorage.getItem('ytLeft')
+
+        if (width !== null){ wrap1.style.width = width }
+        if (left !== null){ wrap1.style.left = left }
+        if (top == null){ wrap1.style.top = top }
+
         let wrap2 = document.createElement('div')
         wrap2.className = 'yt-wrapper'
         wrap1.appendChild(wrap2)
@@ -249,7 +257,9 @@ const YTRS = {
                     },
                     move(event)
                     {
-                        event.target.style.width = Math.round(event.rect.width) + 'px'
+                        let width = Math.round(event.rect.width) + 'px'
+                        localStorage.setItem('ytWidth', width)
+                        event.target.style.width = width
                     },
                 },
                 modifiers: [
@@ -270,8 +280,14 @@ const YTRS = {
                     },
                     move(event)
                     {
-                        event.target.style.left = Math.round(event.rect.left) + 'px'
-                        event.target.style.top = Math.round(event.rect.top) + 'px'
+                        let left = Math.round(event.rect.left) + 'px'
+                        let top = Math.round(event.rect.top) + 'px'
+
+                        localStorage.setItem('ytLeft', left)
+                        localStorage.setItem('ytTop', top)
+
+                        event.target.style.left = left
+                        event.target.style.top = top
                     },
                 },
                 inertia: true,
