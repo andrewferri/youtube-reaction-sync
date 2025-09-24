@@ -267,7 +267,7 @@ input.text {
 
 body.is-work {
 
-  #root, #faq .inner > *:last-child {
+  #root, #faq .inner > * {
     opacity: 0.05;
   }
 
@@ -280,6 +280,6 @@ body.is-work {
   }
 
   #faq-toggle {
-    display: none;
+    //display: none;
   }
 }

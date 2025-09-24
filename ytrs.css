@@ -231,7 +231,7 @@ input.text {
   pointer-events: all;
 }
 
-body.is-work #root, body.is-work #faq .inner > *:last-child {
+body.is-work #root, body.is-work #faq .inner > * {
   opacity: 0.05;
 }
 body.is-work #root {
@@ -239,9 +239,6 @@ body.is-work #root {
 }
 body.is-work #root.step3 {
   background: black !important;
-}
-body.is-work #faq-toggle {
-  display: none;
 }
 
 /*# sourceMappingURL=ytrs.css.map */
