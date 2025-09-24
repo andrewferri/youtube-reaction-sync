@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+.yt-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+.yt-wrapper #yt-player {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #999;
+}
+#root.step1 #s1-link, #root.step2 #s2-link, #root.step3 #s3-link, #root.step4 #s4-link {
+  font-weight: 700;
+}
+#root.step1 .yt-wrapper {
+  width: 500px;
+  max-width: 100%;
+}
+#root.step2 #local-player {
+  max-width: 500px;
+}
+#root.step3 {
+  background: #333;
+}
+#root.step3 #step {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+#root.step3 #step #local-player {
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  background: #333;
+}
+#root.step3 #step #local-player video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#root.step3 #step .yt-wrap {
+  position: absolute;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 400px;
+  padding: 10px;
+}
+#root.step3 #step .yt-wrap.dragging .yt-wrapper {
+  pointer-events: none;
+  opacity: 0.5;
+}
+#root.step3 #step .info {
+  position: absolute;
+  z-index: 50;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 20px;
+  background: white;
+  border-radius: 5px;
+}
+#root.step3 #step .info p {
+  margin: 0;
+}
+#root.step3 #step .info a {
+  display: block;
+  color: red;
+  font-size: 50px;
+  line-height: 40px;
+  text-decoration: none;
+}
+
+.crumbs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0 20px;
+}
+.crumbs ul {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.crumbs li {
+  position: relative;
+}
+.crumbs li:after {
+  content: ">";
+  margin-left: 10px;
+}
+.crumbs li:last-child {
+  padding-right: 0;
+}
+.crumbs li:last-child:after {
+  content: "";
+}
+.crumbs a {
+  display: inline-flex;
+  height: 30px;
+  line-height: 30px;
+  color: #2d72d2;
+  text-decoration: none;
+}
+
+#step {
+  padding: 50px;
+  background: white;
+  border-radius: 5px;
+}
+#step > *:last-child {
+  margin-bottom: 0;
+}
+
+.block {
+  margin-bottom: 20px;
+}
+
+.inputs {
+  display: flex;
+  gap: 5px;
+}
+
+.warning-message {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #8e1111;
+  color: white;
+  border-radius: 3px;
+}
+
+input.text {
+  appearance: none;
+  width: 300px;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.btn {
+  appearance: none;
+  height: 30px;
+  padding: 0 10px;
+  background: #2d72d2;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+body.is-work #root {
+  opacity: 0.1;
+}
+body.is-work #yt-player {
+  opacity: 0.3;
+}
+
+/*# sourceMappingURL=ytrs.css.map */
