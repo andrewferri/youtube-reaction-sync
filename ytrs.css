@@ -201,6 +201,7 @@ input.text {
   justify-content: center;
   background: rgba(0, 0, 0, 0.9);
   opacity: 0;
+  transition: 0.3s;
   pointer-events: none;
 }
 #faq .inner {
