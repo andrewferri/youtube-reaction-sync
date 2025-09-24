@@ -187,6 +187,8 @@ const YTRS = {
         self._clear()
         self.root.className = 'step3'
 
+        document.getElementById('faq').remove()
+
         if (localStorage.getItem('infoCleared') === null)
         {
             let info = document.createElement('div')
