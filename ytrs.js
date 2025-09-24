@@ -223,7 +223,7 @@ const YTRS = {
 
         if (width !== null){ wrap1.style.width = width }
         if (left !== null){ wrap1.style.left = left }
-        if (top == null){ wrap1.style.top = top }
+        if (top !== null){ wrap1.style.top = top }
 
         let wrap2 = document.createElement('div')
         wrap2.className = 'yt-wrapper'
