@@ -40,18 +40,11 @@ const YTRS = {
         self._clear()
         self.root.className = 'step1'
 
-        let warning = null
-
-        let button = document.createElement('button')
-        button.className = 'btn'
-        button.innerHTML = 'Next &rarr;'
-        button.setAttribute('disabled', 'disabled')
-
         let timeout = null
-        let input = document.createElement('input')
-        input.className = 'text'
-        input.value = self.YTVideoURL
-        input.setAttribute('placeholder', 'Youtube video URL')
+        let warning = null
+        let button = document.querySelectorAll('button.btn')[0]
+        let input = document.querySelectorAll('input.text')[0]
+
         input.addEventListener('input', function(e)
         {
             self.YTVideoURL = e.target.value
@@ -116,12 +109,6 @@ const YTRS = {
                 }, 600)
             }
         })
-
-        let div = document.createElement('div')
-        div.className = 'block inputs'
-        div.appendChild(input)
-        div.appendChild(button)
-        self.step.appendChild(div)
     },
     step2: function() // Select local file
     {
