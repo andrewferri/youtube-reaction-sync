@@ -317,20 +317,20 @@ const YTRS = {
     {
         this.currentVolume = parseFloat((parseInt(e.target.value) / 100).toFixed(2))
         this.localVideoPlayer.volume = this.currentVolume
-        this.volumeButton.innerHTML = (this.currentVolume <= 0) ? MUTED_ICON : VOLUME_ICON
+        this.volumeButton.html((this.currentVolume <= 0) ? MUTED_ICON : VOLUME_ICON)
     },
     toggleMute: function()
     {
         if (this.localVideoPlayer.volume > 0)
         {
-            this.volumeSlider.value = 0
+            this.volumeSlider.val(0)
             this.localVideoPlayer.volume = 0
-            this.volumeButton.innerHTML = MUTED_ICON
+            this.volumeButton.html(MUTED_ICON)
         } else
         {
-            this.volumeSlider.value = this.currentVolume * 100
+            this.volumeSlider.val(this.currentVolume * 100)
             this.localVideoPlayer.volume = this.currentVolume
-            this.volumeButton.innerHTML = VOLUME_ICON
+            this.volumeButton.html(VOLUME_ICON)
         }
     },
     loadLocalPlayer: function(controls=false)
@@ -352,36 +352,25 @@ const YTRS = {
         video.on('canplay', function()
         {
             self.localVideoValid = true
-        })
-
-        /*self.localVideoPlayer.oncanplay = function()
-        {
-            self.localVideoValid = true
 
             if (controls === false)
             {
-                let div = document.createElement('div')
-                div.className = 'video-controls'
-                parent.appendChild(div)
+                let div = $('<div class="video-controls" />')
+                parent.append(div)
 
-                self.volumeButton = document.createElement('button')
-                self.volumeButton.innerHTML = VOLUME_ICON
-                self.volumeButton.addEventListener('click', self.toggleMute.bind(self))
-                div.appendChild(self.volumeButton)
+                self.volumeButton = $(`<button>${VOLUME_ICON}</button>`)
+                self.volumeButton.on('click', self.toggleMute.bind(self))
+                div.append(self.volumeButton)
 
-                self.volumeSlider = document.createElement('input')
-                self.volumeSlider.setAttribute('type', 'range')
-                self.volumeSlider.setAttribute('min', '0')
-                self.volumeSlider.setAttribute('max', '100')
-                self.volumeSlider.setAttribute('step', '1')
-                self.volumeSlider.addEventListener('input', self.changeVolume.bind(self))
-                self.volumeSlider.addEventListener('change', self.changeVolume.bind(self))
-                self.volumeSlider.value = Math.round(self.localVideoPlayer.volume * 100).toString()
-                div.appendChild(self.volumeSlider)
+                self.volumeSlider = $('<input type="range" min="0" max="100" step="1" />')
+                self.volumeSlider.val(Math.round(self.localVideoPlayer.volume * 100).toString())
+                self.volumeSlider.on('input', self.changeVolume.bind(self))
+                self.volumeSlider.on('change', self.changeVolume.bind(self))
+                div.append(self.volumeSlider)
 
                 self.currentVolume = self.localVideoPlayer.volume
             }
-        }*/
+        })
 
         video.on('error', function()
         {
