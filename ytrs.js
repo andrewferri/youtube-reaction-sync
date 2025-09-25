@@ -9,6 +9,7 @@ const YTRS = {
     videoOffset: 0,
     YTPlayer: null,
     YTVideoURL: '',
+    interval2: null,
     currentVolume: 0,
     localVideoURL: '',
     volumeButton: null,
@@ -368,6 +369,9 @@ const YTRS = {
                 self.volumeSlider.on('change', self.changeVolume.bind(self))
                 div.append(self.volumeSlider)
 
+                self.root.on('mousemove', self.showVideoControls.bind(self))
+                self.root.on('mouseleave', self.hideVideoControls.bind(self))
+
                 self.currentVolume = self.localVideoPlayer.volume
             }
         })
@@ -389,7 +393,21 @@ const YTRS = {
         parent.append(video)
         self.localVideoPlayer = video[0]
     },
-    youtubeId: function() {
+    showVideoControls: function()
+    {
+        clearTimeout(this.interval2)
+        $('#local-player').addClass('hover')
+        this.interval2 = setTimeout(() => {
+            $('#local-player').removeClass('hover')
+        }, 6000)
+    },
+    hideVideoControls: function()
+    {
+        clearTimeout(this.interval2)
+        $('#local-player').removeClass('hover')
+    },
+    youtubeId: function()
+    {
         let id = ''
         let url = this.YTVideoURL.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)
         if(url[2] !== undefined)
