@@ -293,7 +293,7 @@ const YTRS = {
         if (time < 0)
         {
             // We loop until we reach the offset time, then play the video.
-            self.interval = setTimeout(self.syncVideo.bind(self), 100);
+            self.interval = setTimeout(self.syncVideo.bind(self), 100)
         } else
         {
             if (time < self.localVideoDuration)
@@ -408,3 +408,10 @@ const YTRS = {
 }
 
 YTRS.init()
+
+kofiWidgetOverlay.draw('aferri', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Tip Me',
+    'floating-chat.donateButton.background-color': '#794bc4',
+    'floating-chat.donateButton.text-color': '#fff'
+})

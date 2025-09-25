@@ -106,9 +106,15 @@ video {
             height: 30px;
             line-height: 30px;
             background: transparent;
+            border: none;
             color: white;
             font-size: 30px;
+            transition: 0.2s;
             cursor: pointer;
+
+            &:hover {
+              background: #333;
+            }
 
             svg {
               vertical-align: middle;

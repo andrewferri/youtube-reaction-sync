@@ -93,9 +93,14 @@ video {
   height: 30px;
   line-height: 30px;
   background: transparent;
+  border: none;
   color: white;
   font-size: 30px;
+  transition: 0.2s;
   cursor: pointer;
+}
+#root.step3 #step #local-player .video-controls button:hover {
+  background: #333;
 }
 #root.step3 #step #local-player .video-controls button svg {
   vertical-align: middle;
