@@ -245,6 +245,10 @@ input.text {
   pointer-events: all;
 }
 
+body.video-ready > div[id^=kofi-] {
+  opacity: 0.2;
+}
+
 body.is-work #root, body.is-work #faq .inner > * {
   opacity: 0.05;
 }

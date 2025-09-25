@@ -284,6 +284,10 @@ input.text {
   }
 }
 
+body.video-ready > div[id^="kofi-"] {
+  opacity: 0.2;
+}
+
 body.is-work {
 
   #root, #faq .inner > * {

@@ -168,6 +168,7 @@ const YTRS = {
         let self = this
         self._clear()
         self.root.attr('class', 'step3')
+        $(document.body).addClass('video-ready')
 
         $('#faq-toggle').remove()
 
