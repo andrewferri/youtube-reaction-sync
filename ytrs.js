@@ -235,6 +235,7 @@ const YTRS = {
             }
         })
 
+        // YT drag/resize
         interact('.yt-wrap')
             .resizable({
                 edges: {right: true},
@@ -243,9 +244,8 @@ const YTRS = {
                     {
                         wrap1.classList.add('dragging')
                     },
-                    end(event)
+                    end()
                     {
-                        console.log(event)
                         wrap1.classList.remove('dragging')
                     },
                     move(event)
@@ -267,9 +267,8 @@ const YTRS = {
                     {
                         wrap1.classList.add('dragging')
                     },
-                    end(event)
+                    end()
                     {
-                        console.log(event)
                         wrap1.classList.remove('dragging')
                     },
                     move(event)
