@@ -43,7 +43,7 @@ const YTRS = {
         let warning = null
         let button = document.querySelectorAll('button.btn')[0]
         let input = document.querySelectorAll('input.text')[0]
-        
+
         input.addEventListener('input', function(e)
         {
             self.YTVideoURL = e.target.value
