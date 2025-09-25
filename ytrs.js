@@ -114,7 +114,7 @@ const YTRS = {
 
         let note = $('<div class="block">Select local video file</div>')
 
-        let button = $('<button class="btn" disabled>Next &rarr</button>')
+        let button = $('<button class="btn" disabled>Next &rarr;</button>')
         button.on('click', self.validate_step2.bind(self))
 
         let input = $('<input type="file" />')
