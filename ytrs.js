@@ -355,7 +355,7 @@ const YTRS = {
         {
             self.localVideoValid = true
 
-            if (controls === false)
+            if (controls === false && self.volumeSlider === null)
             {
                 let div = $('<div class="video-controls" />')
                 parent.append(div)
