@@ -400,7 +400,7 @@ const YTRS = {
         $('#local-player').addClass('hover')
         this.interval2 = setTimeout(() => {
             $('#local-player').removeClass('hover')
-        }, 6000)
+        }, 4000)
     },
     hideVideoControls: function()
     {

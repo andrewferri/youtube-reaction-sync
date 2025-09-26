@@ -126,6 +126,10 @@ video {
               }
             }
           }
+
+          input[type="range"] {
+            width: 300px;
+          }
         }
 
         &.hover {

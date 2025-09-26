@@ -110,6 +110,9 @@ video {
 #root.step3 #step #local-player .video-controls button svg path {
   fill: white;
 }
+#root.step3 #step #local-player .video-controls input[type=range] {
+  width: 300px;
+}
 #root.step3 #step #local-player.hover .video-controls {
   opacity: 1;
 }
