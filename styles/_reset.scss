@@ -1,0 +1,18 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+th, td, input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+}
