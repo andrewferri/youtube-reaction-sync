@@ -32,16 +32,14 @@ export default function VideoSync() {
     useEffect(() => {
         if (YTVideo.current !== null)
         {
+            let id = YtID(YtURL)
             YTPlayer.current = new YT.Player(YTVideo.current, {
                 videoId: id,
                 width: '640',
                 height: '390',
                 playerVars: {playsinline:1},
                 events: {
-                    onStateChange: function(e)
-                    {
-
-                    },
+                    onStateChange: ytStateChange,
                 }
             })
         }
@@ -98,6 +96,10 @@ export default function VideoSync() {
 
     const localVideoError = () => {
         alert('Please check video format, possibly unsupported by your browser.')
+    }
+
+    const ytStateChange = e => {
+
     }
 
     return (
